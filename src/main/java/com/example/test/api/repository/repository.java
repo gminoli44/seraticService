@@ -65,7 +65,7 @@ public class repository {
     }
 
     public List<User> validarDatos(User repository) {
-        StringBuilder consulta = new StringBuilder("SELECT * FROM usuario WHERE userID=:id AND pass=:password");
+        StringBuilder consulta = new StringBuilder("SELECT * FROM usuario WHERE userID=:id AND pass=:password and tipo=1");
         Query query = em.createNativeQuery(consulta.toString());
         query.unwrap(SQLQuery.class).setResultTransformer(Transformers.aliasToBean(User.class));
         query.setParameter("id", repository.getUserID());
