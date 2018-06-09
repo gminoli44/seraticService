@@ -6,8 +6,7 @@
 package com.example.test.api.repository;
 
 
-import com.example.test.api.vo.User;
-import java.sql.Date;
+import com.example.test.api.vo.Mandatos;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -23,45 +22,44 @@ import org.springframework.stereotype.Repository;
  */
 @Transactional
 @Repository
-public class repository {
+public class repositoryMandatos {
     @PersistenceContext
     private EntityManager em;
     
-    public List<User> obtenerDatos(){
-    StringBuilder consulta = new StringBuilder("SELECT * FROM usuario");
+    public List<Mandatos> obtenerDatos(){
+    StringBuilder consulta = new StringBuilder("SELECT * FROM mandatos");
         Query query = em.createNativeQuery(consulta.toString());
-        query.unwrap(SQLQuery.class).setResultTransformer(Transformers.aliasToBean(User.class));
+        query.unwrap(SQLQuery.class).setResultTransformer(Transformers.aliasToBean(Mandatos.class));
       //  query.setParameter("radio", radio);
       //  query.setParameter("posicion", geomFac.createPoint(point));
         return  query.getResultList();
     }
     
-    public void insertarDatos(User repository){
-    StringBuilder consulta = new StringBuilder("INSERT INTO usuario (userID ,nombre, pass, tipo) VALUES(:id,:nombre,:password,:tipo)");
+    public void insertarDatos(Mandatos repository){
+    StringBuilder consulta = new StringBuilder("INSERT INTO usuario (abreviacion, descripcion, fecha_creacion) VALUES(:id,:nombre,:password,:tipo)");
         Query query = em.createNativeQuery(consulta.toString());
-        query.setParameter("id", repository.getUserID());
-        query.setParameter("nombre", repository.getNombre());
-        query.setParameter("password", repository.getPass());
-        query.setParameter("tipo", repository.getTipo());
-       // query.setParameter("fecha", java.time.LocalDate.now() + " " + java.time.LocalTime.now());
+        query.setParameter("nombre", repository.getAbreviacion());
+        query.setParameter("password", repository.getDescripcion());
+       // query.setParameter("tipo", repository.getTipo());
+        query.setParameter("fecha", java.time.LocalDate.now() + " " + java.time.LocalTime.now());
         query.executeUpdate();
     }
     
-    public void actualizarDatos(User repository){
+    public void actualizarDatos(Mandatos repository){
     StringBuilder consulta = new StringBuilder("UPDATE usuario SET nombre=:nombre,pass=:password, tipo=:tipo WHERE userID=:id");
         Query query = em.createNativeQuery(consulta.toString());
-        query.setParameter("id", repository.getUserID());
-        query.setParameter("nombre", repository.getNombre());
-        query.setParameter("password", repository.getPass());
-        query.setParameter("tipo", repository.getTipo());
+        query.setParameter("nombre", repository.getAbreviacion());
+        query.setParameter("password", repository.getDescripcion());
+       // query.setParameter("tipo", repository.getTipo());
+        query.setParameter("fecha", java.time.LocalDate.now() + " " + java.time.LocalTime.now());
       //  query.setParameter("fecha", java.time.LocalDate.now() + " " + java.time.LocalTime.now());
         query.executeUpdate();
     }
     
-    public void eliminarDatos(User repository){
+    public void eliminarDatos(Mandatos repository){
     StringBuilder consulta = new StringBuilder("DELETE FROM usuario WHERE userID=:id");
         Query query = em.createNativeQuery(consulta.toString());
-        query.setParameter("id", repository.getUserID());
+        query.setParameter("id", repository.getManID());
       //  query.setParameter("posicion", geomFac.createPoint(point));
         query.executeUpdate();
     }

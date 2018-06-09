@@ -6,6 +6,8 @@
 package com.example.test.api.controller;
 
 import com.example.test.api.repository.repository;
+import com.example.test.api.repository.repositoryMandatos;
+import com.example.test.api.vo.Mandatos;
 import com.example.test.api.vo.User;
 import java.util.HashMap;
 import java.util.List;
@@ -22,15 +24,15 @@ import org.springframework.web.bind.annotation.RestController;
  * @author GiosebsSeratic
  */
 @RestController
-@RequestMapping("/usuario")
-public class UserController {
+@RequestMapping("/mandatos")
+public class MandatosController {
     
     @Autowired
-    repository r;
+    repositoryMandatos r;
     
     @RequestMapping(value = "/insertar")
     public @ResponseBody
-    Map<String, Object> insertar(@RequestBody User reVO) {
+    Map<String, Object> insertar(@RequestBody Mandatos reVO) {
         Map<String, Object> retorno = null;
         try {
             r.insertarDatos(reVO);
@@ -49,7 +51,7 @@ public class UserController {
     
     @RequestMapping(value = "/actualizar")
     public @ResponseBody
-    Map<String, Object> update(@RequestBody User repoVO) {
+    Map<String, Object> update(@RequestBody Mandatos repoVO) {
         Map<String, Object> retorno = null;
         try {
             r.actualizarDatos(repoVO);
@@ -68,7 +70,7 @@ public class UserController {
     
     @RequestMapping(value = "/eliminar")
     public @ResponseBody
-    Map<String, Object> eliminar(@RequestBody User repoVO) {
+    Map<String, Object> eliminar(@RequestBody Mandatos repoVO) {
         Map<String, Object> retorno = null;
         try {
             r.eliminarDatos(repoVO);
@@ -91,7 +93,7 @@ public class UserController {
         Map<String, Object> retorno = null;
         try {
           //  Map<String,Map> listaObjeto = null;
-            List<User> resultado = r.obtenerDatos();
+            List<Mandatos> resultado = r.obtenerDatos();
             retorno = new HashMap(2);
             retorno.put("status", "success");           
             retorno.put("message", resultado);

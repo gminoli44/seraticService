@@ -10,7 +10,7 @@ package com.example.test.api.vo;
  * @author Gersain
  */
 
-public class repositoryUser {
+public class User {
     
     private String userID;
     private String nombre;
@@ -19,7 +19,7 @@ public class repositoryUser {
 
    
     
-    public repositoryUser(){}
+    public User(){}
 
     public String getUserID() {
         return userID;
