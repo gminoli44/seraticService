@@ -37,31 +37,31 @@ public class repository {
     }
     
     public void insertarDatos(repositoryUser repository){
-    StringBuilder consulta = new StringBuilder("INSERT INTO usuario (nombre, apellido, usuario, password) VALUES(:nombre,:apellido,:usuario,:password)");
+    StringBuilder consulta = new StringBuilder("INSERT INTO usuario (userID ,nombre, pass, tipo) VALUES(:id,:nombre,:password,:tipo)");
         Query query = em.createNativeQuery(consulta.toString());
-        query.setParameter("id", repository.getId());
+        query.setParameter("id", repository.getUserID());
         query.setParameter("nombre", repository.getNombre());
-        query.setParameter("password", repository.getPassword());
+        query.setParameter("password", repository.getPass());
         query.setParameter("tipo", repository.getTipo());
-        query.setParameter("fecha", java.time.LocalDate.now() + " " + java.time.LocalTime.now());
+       // query.setParameter("fecha", java.time.LocalDate.now() + " " + java.time.LocalTime.now());
         query.executeUpdate();
     }
     
     public void actualizarDatos(repositoryUser repository){
-    StringBuilder consulta = new StringBuilder("UPDATE usuario SET nombre=:nombre,apellido=:apellido, usuario=:usuario, password=:password WHERE id=:id");
+    StringBuilder consulta = new StringBuilder("UPDATE usuario SET nombre=:nombre,pass=:password, tipo=:tipo WHERE userID=:id");
         Query query = em.createNativeQuery(consulta.toString());
-        query.setParameter("id", repository.getId());
+        query.setParameter("id", repository.getUserID());
         query.setParameter("nombre", repository.getNombre());
-        query.setParameter("password", repository.getPassword());
+        query.setParameter("password", repository.getPass());
         query.setParameter("tipo", repository.getTipo());
-        query.setParameter("fecha", java.time.LocalDate.now() + " " + java.time.LocalTime.now());
+      //  query.setParameter("fecha", java.time.LocalDate.now() + " " + java.time.LocalTime.now());
         query.executeUpdate();
     }
     
     public void eliminarDatos(repositoryUser repository){
-    StringBuilder consulta = new StringBuilder("DELETE FROM usuario WHERE id=:id");
+    StringBuilder consulta = new StringBuilder("DELETE FROM usuario WHERE userID=:id");
         Query query = em.createNativeQuery(consulta.toString());
-        query.setParameter("id", repository.getId());
+        query.setParameter("id", repository.getUserID());
       //  query.setParameter("posicion", geomFac.createPoint(point));
         query.executeUpdate();
     }

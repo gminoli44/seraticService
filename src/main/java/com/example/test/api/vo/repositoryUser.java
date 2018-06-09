@@ -5,10 +5,6 @@
  */
 package com.example.test.api.vo;
 
-import java.sql.Date;
-
-
-
 /**
  *
  * @author Gersain
@@ -16,21 +12,21 @@ import java.sql.Date;
 
 public class repositoryUser {
     
-    private String id;
+    private String userID;
     private String nombre;
-    private String password;
+    private String pass;
     private int tipo;
-    private Date fecha_registro;
+
    
     
     public repositoryUser(){}
 
-    public String getId() {
-        return id;
+    public String getUserID() {
+        return userID;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setUserID(String userID) {
+        this.userID = userID;
     }
 
     public String getNombre() {
@@ -41,12 +37,12 @@ public class repositoryUser {
         this.nombre = nombre;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPass() {
+        return pass;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPass(String pass) {
+        this.pass = pass;
     }
 
     public int getTipo() {
@@ -57,13 +53,7 @@ public class repositoryUser {
         this.tipo = tipo;
     }
 
-    public Date getFecha_registro() {
-        return fecha_registro;
-    }
-
-    public void setFecha_registro(Date fecha_registro) {
-        this.fecha_registro = fecha_registro;
-    }
+   
     
     
 }

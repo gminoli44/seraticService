@@ -22,8 +22,8 @@ import org.springframework.web.bind.annotation.RestController;
  * @author GiosebsSeratic
  */
 @RestController
-@RequestMapping("/votacion")
-public class Controller {
+@RequestMapping("/usuario")
+public class UserController {
     
     @Autowired
     repository r;
@@ -47,7 +47,7 @@ public class Controller {
         }
     }
     
-    @RequestMapping(value = "/update")
+    @RequestMapping(value = "/actualizar")
     public @ResponseBody
     Map<String, Object> update(@RequestBody repositoryUser repoVO) {
         Map<String, Object> retorno = null;
@@ -90,7 +90,7 @@ public class Controller {
     Map<String, Object> listar() {
         Map<String, Object> retorno = null;
         try {
-            Map<String,Map> listaObjeto = null;
+          //  Map<String,Map> listaObjeto = null;
             List<repositoryUser> resultado = r.obtenerDatos();
             retorno = new HashMap(2);
             retorno.put("status", "success");           
