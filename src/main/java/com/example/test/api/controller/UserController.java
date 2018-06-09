@@ -104,4 +104,26 @@ public class UserController {
             return retorno;
         }
     }
+    
+    @RequestMapping(value = "/validar")
+    public @ResponseBody
+    Map<String, Object> validar(@RequestBody User repoVO) {
+        Map<String, Object> retorno = null;
+        try {
+          //  Map<String,Map> listaObjeto = null;
+            List<User> resultado = r.validarDatos(repoVO);
+            retorno = new HashMap(2);
+            retorno.put("status", "success");           
+            retorno.put("message", resultado);
+            return retorno;
+        } catch (Exception e) {
+            e.printStackTrace();
+            retorno = new HashMap(2);
+            retorno.put("status", "error");
+            retorno.put("message", e.getMessage());
+            return retorno;
+        }
+    }
+    
+    
 }

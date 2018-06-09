@@ -5,19 +5,30 @@
  */
 
  
- $(document).ready(function() {
+function validar() {
+     
+     
+     
+    var userID =  $("#identificacion").val();
+    var password = $("#pass").val();
     $.ajax({
-        type : "POST",
-        contentType : "application/json",
-        data : ('{"userID": "8800", "nombre": "","pass": "pass2","tipo": 1}'),
-        url: "http://localhost:8084/api/usuario/valida"
+        url: "http://localhost:8084/api/usuario/validar",
+        type: "POST",
+        data: JSON.stringify({userID:userID,nombre:'n',pass:password,tipo:1}),// now data come in this function
+        contentType: "application/json; charset=utf-8",
+        crossDomain: true,
+        dataType: "json",
+        success: function (data) {
+        }
     }).then(function(data) {
-            console.log(data);
-            if(data.message[0].userID!=""){
-              //  window.location.replace("http://localhost:8084/api/gestionUsuarios.html");
+            if(data.message[0]){
+                window.location.replace("http://localhost:8084/api/gestionUsuarios.html");
+            }
+            else{
+                alert("Usuario o contraseña incorrecto");
             }
     });
-});
+}
 
 
 	

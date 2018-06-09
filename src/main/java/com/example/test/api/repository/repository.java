@@ -31,8 +31,6 @@ public class repository {
     StringBuilder consulta = new StringBuilder("SELECT * FROM usuario");
         Query query = em.createNativeQuery(consulta.toString());
         query.unwrap(SQLQuery.class).setResultTransformer(Transformers.aliasToBean(User.class));
-      //  query.setParameter("radio", radio);
-      //  query.setParameter("posicion", geomFac.createPoint(point));
         return  query.getResultList();
     }
     
@@ -64,6 +62,15 @@ public class repository {
         query.setParameter("id", repository.getUserID());
       //  query.setParameter("posicion", geomFac.createPoint(point));
         query.executeUpdate();
+    }
+
+    public List<User> validarDatos(User repository) {
+        StringBuilder consulta = new StringBuilder("SELECT * FROM usuario WHERE userID=:id AND pass=:password");
+        Query query = em.createNativeQuery(consulta.toString());
+        query.unwrap(SQLQuery.class).setResultTransformer(Transformers.aliasToBean(User.class));
+        query.setParameter("id", repository.getUserID());
+        query.setParameter("password", repository.getPass());
+        return  query.getResultList();
     }
         
 }
