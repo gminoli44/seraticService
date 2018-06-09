@@ -7,11 +7,18 @@
  
  $(document).ready(function() {
     $.ajax({
-        url: "http://localhost:8084/api/usuario/listar"
+        type : "POST",
+        contentType : "application/json",
+        data : ('{"userID": "8800", "nombre": "","pass": "pass2","tipo": 1}'),
+        url: "http://localhost:8084/api/usuario/valida"
     }).then(function(data) {
-            console.log(data.message[0].userID);
+            console.log(data);
             if(data.message[0].userID!=""){
-                window.location.replace("http://localhost:8084/api/gestionUsuarios.html");
+              //  window.location.replace("http://localhost:8084/api/gestionUsuarios.html");
             }
     });
 });
+
+
+	
+	
